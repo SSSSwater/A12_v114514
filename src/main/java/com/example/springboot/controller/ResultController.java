@@ -1,6 +1,7 @@
 package com.example.springboot.controller;
 
 import com.example.basicLayout.Exam;
+import com.example.basicLayout.Student;
 import com.example.springboot.service.ExamService;
 import com.example.springboot.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,14 @@ public class ResultController {
     ExamService examService;
 
     @RequestMapping("/teacher/result_management.html")
-    public String toResult(){
+    public String toResult() {
         return "/teacher/result_management";
     }
 
 
     @ResponseBody
     @RequestMapping("/teacher/result_management")
-    public Object doTeaResult(HttpServletResponse response){
+    public Object doTeaResult(HttpServletResponse response) {
 
         // 跨域支持
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -40,34 +41,48 @@ public class ResultController {
     }
 
 
-    @RequestMapping("/teacher/result_management_sub")
-    public String manageSub(){
-        // TODO 老师管理本班学生的考试结果
+    @ResponseBody
+    @RequestMapping(value = "/teacher/result_management_sub", params = "stclass")
+    public Object manageSubClass(HttpServletRequest request,HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
 
-
-
-
+        // TODO 老师管理指定班级学生的考试结果（需要根据examid获取成绩数据表）
 
 
         return "/teacher/result_management_sub.html";
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/teacher/result_management_sub")
+    public Object manageSub(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+
+        return examService.getExam(Integer.parseInt(request.getParameter("examid")));
+    }
+
+
     @RequestMapping("/teacher/result_management_sub.html")
-    public String doSub(){
+    public String toSub() {
         return "/teacher/result_management_sub";
     }
 
 
-
-
-
     @RequestMapping("/student/my_result.html")
-    public String toStuResult(){
+    public String toStuResult() {
         return "/student/my_result";
     }
 
     @ResponseBody
     @RequestMapping("/student/my_result")
-    public Object doStuResult(HttpServletResponse response){
+    public Object doStuResult(HttpServletRequest request,HttpServletResponse response) {
         // 跨域支持
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,DELETE");
@@ -75,20 +90,17 @@ public class ResultController {
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
-        // TODO 获取学生已经完成的考试
-        //先用所有考试充数了(
-
-        return resultService.getAllExam();
+        return resultService.getStuExam((Student) request.getSession().getAttribute("loginUser"));
     }
 
     @RequestMapping("/student/result_management_sub.html")
-    public String toStuResultSub(){
+    public String toStuResultSub() {
         return "/student/result_management_sub";
     }
 
     @ResponseBody
     @RequestMapping("/student/result_management_sub")
-    public Object doStuResultSub(HttpServletRequest request, HttpServletResponse response){
+    public Object doStuResultSub(HttpServletRequest request, HttpServletResponse response) {
         // 跨域支持
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,DELETE");
