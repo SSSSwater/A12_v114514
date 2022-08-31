@@ -19,4 +19,6 @@ public interface IExamDao {
     public List<Exam> findExamByExamclass(String examclass);
 
     public List<Exam> findAllExam();
+
+    public String GetStclassByExamId(String examId);
 }

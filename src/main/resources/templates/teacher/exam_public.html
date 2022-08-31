@@ -19,7 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/9e301165f1.js" crossorigin="anonymous"></script>
 </head>
-<body onload="request()">
+<body >
+<button onclick="request()"></button>
 <div class="container">
     <header
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -70,12 +71,12 @@
     </form>
 <script>
      function request(){
-        axios.get("http://127.0.0.1:8080/teacher/exam_public").then(function (res){
-            t=res.data;
+        axios.get("https://www.fastmock.site/mock/e9925219f50cf7e3886d239c029d58a8/test/exam").then(function (res){
+            t=res.data.exam;
             i=0;
             while(t[i]!=null){
                 console.log(t[i]);
-                showExam(t[i].paperid,t[i].papername );
+                showExam(t[i].id,t[i].title);
                 i++;
             }
         })

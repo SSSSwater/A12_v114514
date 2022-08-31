@@ -7,6 +7,7 @@ public class Student extends User{
     private String school;
     private String account;
     private String password;
+    private int res;
 
     public Student(){
         super(1);
@@ -21,6 +22,13 @@ public class Student extends User{
         this.school = school;
         this.account = account;
         this.password = password;
+    }
+
+    public Student(int id, String name, String classnum,int res){
+        this.id = id;
+        this.name = name;
+        this.classnum = classnum;
+        this.res = res;
     }
 
     public int getId() {
@@ -71,6 +79,10 @@ public class Student extends User{
         this.password = password;
     }
 
+    public int getRes() { return res; }
+
+    public void setRes(int res) { this.res = res; }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -80,6 +92,7 @@ public class Student extends User{
                 ", school='" + school + '\'' +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
+                ",result='" + res + '\'' +
                 '}';
     }
 }

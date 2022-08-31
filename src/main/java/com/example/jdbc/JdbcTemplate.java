@@ -15,22 +15,20 @@ public class JdbcTemplate {
 //        Paper paper1 = new Paper(1,"单元一测试卷","Math","3-5-2-6-10","20-20-20-20-20");
 //        Paper paper2 = new Paper(2,"单元二测试卷","Math","3-5-2-6-10","20-20-20-20-20");
 //        ApplicationContext ac = new ClassPathXmlApplicationContext("Bean.xml");
-//        IExamDao iexamDao = ac.getBean("examDao",IExamDao.class);
+
 //        boolean yn = iexamDao.finish(1);
         ApplicationContext ac = new ClassPathXmlApplicationContext("Bean.xml");
-        IExamDao iexamDao = ac.getBean("examDao",IExamDao.class);
-        String[] cla = new String[2];
-        cla[0]="G1-1";
-        cla[1]="G1-2";
-        List<Exam> exams = iexamDao.findExamByTeaclass(cla);
+        IResultDao iResultDao = ac.getBean("resultsDao",IResultDao.class);
+//        IExamDao iexamDao = ac.getBean("examDao",IExamDao.class);
+//        String stclass = iexamDao.GetStclassByExamId("1");
+        List<Student> Stu= iResultDao.getStuResultsByExamId("1");
+//        int Stu = iResultDao.GetresultByExamId("1");
 //        List<Paper> papers = ipaperDao.getPaperbysubject("Math");
 //        Paper paper = ipaperDao.getpaperbyname("单元一测试卷");
 //        ipaperDao.updatePaper(paper1);
 //        ipaperDao.updatePaper(paper2);
 //        List<Paper> papers = ipaperDao.getAllpaper();
-        for(Exam e: exams){
-            System.out.println(e);
-        }
+        System.out.println(Stu);
 
 
 
