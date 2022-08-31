@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ResultController {
@@ -48,10 +50,22 @@ public class ResultController {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        return resultService.getStuRes(Integer.parseInt(request.getParameter("examid")));
+
+        String[] stClass=request.getParameterValues("stclass");
+        List<Student> students=resultService.getStuRes(Integer.parseInt(request.getParameter("examid")));
+        List<Student> studentList=new ArrayList<>();
+        for (Student student : students) {
+            for(String s:stClass){
+                if (student.getClassnum().equals(s)) {
+                    studentList.add(student);
+                }
+            }
+        }
+
+        return studentList;
     }
 
-    @ResponseBody
+   /* @ResponseBody
     @RequestMapping(value = "/teacher/result_management_sub")
     public Object manageSub(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -60,8 +74,8 @@ public class ResultController {
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
-        return examService.getExam(Integer.parseInt(request.getParameter("examid")));
-    }
+        return resultService.getStuRes(Integer.parseInt(request.getParameter("examid")));
+    }*/
 
 
     @RequestMapping("/teacher/result_management_sub.html")

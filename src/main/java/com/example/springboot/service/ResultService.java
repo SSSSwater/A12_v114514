@@ -16,7 +16,7 @@ import java.util.List;
 public class ResultService {
     @Autowired
     ApplicationContext ac =new ClassPathXmlApplicationContext("Bean.xml");
-    IResultDao resultDao=ac.getBean("resultDao",IResultDao.class);
+    IResultDao resultDao=ac.getBean("resultsDao",IResultDao.class);
 
 
 

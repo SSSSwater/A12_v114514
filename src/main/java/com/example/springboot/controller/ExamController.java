@@ -48,9 +48,6 @@ public class ExamController {
 
     @RequestMapping(value = "/teacher/exam_public_sub")
     public Object doPublicSub(HttpServletRequest request) {
-
-
-
         Exam exam = new Exam();
         exam.setName(request.getParameter("name"));
         exam.setPaperId(request.getIntHeader("paperid"));
