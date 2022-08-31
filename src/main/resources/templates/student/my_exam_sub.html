@@ -20,7 +20,6 @@
     <!--    <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/9e301165f1.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/showData.js"></script>
     <script src="//cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
     <!--    引入vue-->
@@ -49,15 +48,21 @@
         </div>
     </header>
 </div>
-<form>
+<form  action="my_exam_sub.html" method="post" name="form1">
     <div class="container justify-content-center" style="height: 80vh">
         <div class="container overflow-auto m-2" style="height: 95%" id="exam"></div>
     </div>
     <div style="width: 60vw;margin: auto" class="row">
-        <button class="btn btn-outline-primary" name="submit" placeholder="提交" type="submit">提交</button>
+        <input class="btn btn-outline-primary" name="form1" value="提交" type="submit" >
     </div>
 </form>
 <script>
+    var endtime = sessionStorage.getItem("endtime");
+    var now=new Date();
+    var endtime=new Date(endtime);
+    console.log(endtime);
+    //setTimeout("document.form1.submit()",endtime=now);
+
     function getPaper() {
         var a = sessionStorage.getItem("id");
         sessionStorage.removeItem("id");

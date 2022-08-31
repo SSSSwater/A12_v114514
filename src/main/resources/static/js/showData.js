@@ -157,7 +157,7 @@ function showData3(id, type, title, answer, analysis, mode) {
         let answerInput;
         if(type=='cloze') answerInput = document.createElement('input');
         else answerInput = document.createElement('textarea');
-        answerInput.name='answer';
+        answerInput.name='answer_'+id;
         answerInput.className='form-control';
         if(type=='short'){
             answerInput.style='height: 25vh;resize: none;';
