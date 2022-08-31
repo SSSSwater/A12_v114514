@@ -1,5 +1,7 @@
+
+axios.defaults.withCredentials = true;
 var exam_id = sessionStorage.getItem("id");
-axios.get("https://www.fastmock.site/mock/e9925219f50cf7e3886d239c029d58a8/test/exam?exam_id=" + exam_id
+axios.get("http://127.0.0.1:8080/teacher/result_management_sub?exam_id=" + exam_id
 ).then(function (res) {
     classes = res.data.exam[0].class;
     console.log(classes)
@@ -14,15 +16,15 @@ axios.get("https://www.fastmock.site/mock/e9925219f50cf7e3886d239c029d58a8/test/
 
 function requestDetail(selected) {
     if (selected == "All") {
-        axios.get("https://www.fastmock.site/mock/e9925219f50cf7e3886d239c029d58a8/test/mark?mark_id=" + exam_id).then(function (res) {
+        axios.get("http://127.0.0.1:8080/teacher/result_management_sub?mark_id=" + exam_id).then(function (res) {
             handleData(res.data.mark);
         })
     } else {
         console.log(selected);
-        axios(
+        axio(
             {
             method: "GET",
-            url: "https://www.fastmock.site/mock/e9925219f50cf7e3886d239c029d58a8/test/mark"+selected,
+            url: "http://127.0.0.1:8080/teacher/result_management_sub"+selected,
             params: {
                 mark_id: exam_id,
                 class: selected

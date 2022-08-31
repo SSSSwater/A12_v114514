@@ -1,6 +1,5 @@
 package com.example.springboot.controller;
 
-import com.example.basicLayout.Exam;
 import com.example.basicLayout.Student;
 import com.example.springboot.service.ExamService;
 import com.example.springboot.service.ResultService;
@@ -37,7 +36,7 @@ public class ResultController {
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
-        return resultService.getAllExam();
+        return examService.getAllExam();
     }
 
 
@@ -49,11 +48,7 @@ public class ResultController {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-
-        // TODO 老师管理指定班级学生的考试结果（需要根据examid获取成绩数据表）
-
-
-        return "/teacher/result_management_sub.html";
+        return resultService.getStuRes(Integer.parseInt(request.getParameter("examid")));
     }
 
     @ResponseBody
@@ -90,7 +85,7 @@ public class ResultController {
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
-        return resultService.getStuExam((Student) request.getSession().getAttribute("loginUser"));
+        return examService.getStuExam((Student) request.getSession().getAttribute("loginUser"));
     }
 
     @RequestMapping("/student/result_management_sub.html")

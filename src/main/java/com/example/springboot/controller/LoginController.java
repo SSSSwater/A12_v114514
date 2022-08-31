@@ -28,6 +28,8 @@ public class LoginController {
 
         if(user.getRole()!=0) {
             session.setAttribute("loginUser", user);
+            session.setMaxInactiveInterval(60*60*24);
+            log.info(session.getId());
             log.info(request.getSession().getAttribute("loginUser").toString());
             log.info("登录成功");
             if(user.getRole()==1){

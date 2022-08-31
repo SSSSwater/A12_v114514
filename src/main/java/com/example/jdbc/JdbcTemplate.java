@@ -21,7 +21,7 @@ public class JdbcTemplate {
         IResultDao iResultDao = ac.getBean("resultsDao",IResultDao.class);
 //        IExamDao iexamDao = ac.getBean("examDao",IExamDao.class);
 //        String stclass = iexamDao.GetStclassByExamId("1");
-        List<Student> Stu= iResultDao.getStuResultsByExamId("1");
+        List<Student> Stu= iResultDao.getStuResultsByExamId(1);
 //        int Stu = iResultDao.GetresultByExamId("1");
 //        List<Paper> papers = ipaperDao.getPaperbysubject("Math");
 //        Paper paper = ipaperDao.getpaperbyname("单元一测试卷");

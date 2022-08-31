@@ -125,10 +125,11 @@
 </style>
 
 <script>
+    axios.defaults.withCredentials = true;
 var markarr=[];
     function request(){
         axios({
-            url:'http://127.0.0.1:8080/student/my_exam',
+            url:'http://127.0.0.1:8080/student/my_result',
             method:'GET',
         }).then(function (res){
             for(i in res.data.mark)

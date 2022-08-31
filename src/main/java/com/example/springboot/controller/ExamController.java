@@ -4,6 +4,7 @@ import com.example.basicLayout.Exam;
 import com.example.basicLayout.Student;
 import com.example.springboot.service.ExamService;
 import com.example.springboot.service.PaperService;
+import com.mysql.cj.Session;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.util.StringUtil;
@@ -118,6 +119,7 @@ public class ExamController {
     @RequestMapping(value = "/student/my_exam_sub",method = RequestMethod.POST)
     public String doGetExamSub(HttpServletRequest request){
         //TODO 接收学生作答情况数据
+
 
 
         //TODO 将学生作答试卷情况保存入数据库
